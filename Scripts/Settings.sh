@@ -1,7 +1,10 @@
 #!/bin/bash
 # SPDX-License-Identifier: MIT
 # Copyright (C) 2026 VIKINGYFY
-
+# System Plugins 移除Plugins
+sed -i '/admin\/system\/plugins/,/},/d' feeds/luci/modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json
+# OLSR Plugins 移除Plugins
+grep -rl 'olsrd/plugins' feeds/luci | xargs sed -i '/plugins/d'
 #移除luci-app-attendedsysupgrade
 sed -i "/attendedsysupgrade/d" $(find ./feeds/luci/collections/ -type f -name "Makefile")
 #修改默认主题
